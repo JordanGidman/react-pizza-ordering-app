@@ -15,7 +15,7 @@ function Menu() {
   );
 }
 
-//loading menu data from an api using loader which is from react-router and makes it so that the fetch and render happen at the same time
+//loading menu data from an api using loader which is from react-router and makes it so that the fetch and render happen at the same time by passing this loader to our browser router
 export async function loader() {
   const menu = await getMenu();
   return menu;
