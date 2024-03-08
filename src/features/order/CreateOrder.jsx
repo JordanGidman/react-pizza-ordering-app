@@ -2,6 +2,7 @@ import { useState } from 'react'
 import React from 'react'
 import { Form, redirect, useActionData, useNavigate } from 'react-router-dom'
 import { createOrder } from '../../services/apiRestaurant'
+import Button from '../../ui/Button'
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
     /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/.test(
@@ -46,13 +47,23 @@ function CreateOrder() {
             <Form method="POST">
                 <div>
                     <label>First Name</label>
-                    <input type="text" name="customer" required />
+                    <input
+                        className="input"
+                        type="text"
+                        name="customer"
+                        required
+                    />
                 </div>
 
                 <div>
                     <label>Phone number</label>
                     <div>
-                        <input type="tel" name="phone" required />
+                        <input
+                            type="tel"
+                            name="phone"
+                            className="input"
+                            required
+                        />
                     </div>
                     {formErrors?.phone && <p>{formErrors.phone}</p>}
                 </div>
@@ -64,7 +75,7 @@ function CreateOrder() {
                             type="text"
                             name="address"
                             required
-                            className="focus-ring w-full rounded-full border border-stone-200 px-4 py-2 text-sm transition-all duration-300 placeholder:text-stone-400 focus:outline-none focus:ring-yellow-400 md:px-6 md:py-3"
+                            className="input"
                         />
                     </div>
                 </div>
@@ -90,12 +101,9 @@ function CreateOrder() {
                         name="cart"
                         value={JSON.stringify(cart)}
                     />
-                    <button
-                        disabled={isSubmitting}
-                        className="inline-block rounded-full bg-yellow-400 px-4 py-3 font-semibold uppercase tracking-wide text-stone-800 transition-colors duration-300 hover:bg-yellow-300 focus:bg-yellow-300 focus:outline-none focus:ring focus:ring-yellow-300 focus:ring-offset-2 disabled:cursor-not-allowed"
-                    >
+                    <Button disabled={isSubmitting}>
                         {isSubmitting ? 'Placing Order' : 'Order Now'}
-                    </button>
+                    </Button>
                 </div>
             </Form>
         </div>
