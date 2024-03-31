@@ -9,6 +9,7 @@ function getPosition() {
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 //createAsyncThunk needs 2 things to work the action name and an async function that will return the payload for the reducer later. This must return a promise hence the async function.
+//this will produce 3 additional action types for pending fulfilled and rejected which we then handle in our reducers.
 export const fetchAddress = createAsyncThunk(
     `user/fetchAddress`,
     async function () {
@@ -44,6 +45,7 @@ const userSlice = createSlice({
             state.username = action.payload;
         },
     },
+    //we need to use extra reducers to handle our async thunk
     extraReducers: (builder) =>
         builder
             .addCase(fetchAddress.pending, (state, action) => {
